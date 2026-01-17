@@ -5,6 +5,8 @@ import Home from "./pages/home";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { MovieProvider } from "./context/MovieContext";
+import MovieDetails from "./pages/MovieDetails";
+
 function App() {
   const movieNumber = 2;
 
@@ -15,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Favourites" element={<Favourite />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </main>
     </MovieProvider>
