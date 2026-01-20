@@ -1,3 +1,11 @@
+/* Global font */
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background-color: #111; /* optional but recommended for movie apps */
+  color: white;
+}
+
 .main-content {
   flex: 1;
   padding: 2rem;
