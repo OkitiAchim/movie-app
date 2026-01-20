@@ -13,16 +13,19 @@ export const MovieProvider = ({ children }) => {
     if (storedFavs) {
       setFavourites(JSON.parse(storedFavs));
     }
-  }, []),
-    useEffect(() => {
-      localStorage.setItem("favourites", JSON.stringify(favourites));
-    }, [favourites]);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+  }, [favourites]);
 
   const addToFavourites = (movie) => {
-    setFavourites((prev) => [...prev, movie]);
-    if (exists) return prev;
-    return [...prev, movie];
+    setFavourites((prev) => {
+      const exists = prev.some((m) => m.id === movie.id);
+      if (exists) return prev;
+      return [...prev, movie];
+    });
   };
+
   const removeFromFavourites = (movieId) => {
     setFavourites((prev) => prev.filter((movie) => movie.id !== movieId));
   };

@@ -5,11 +5,27 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  height: 55px;
+  width: auto;
+}
+
+.brand-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 0;
 }
 
 .navbar-links {
@@ -17,7 +33,6 @@
   gap: 2rem;
 }
 
-/* FIXED */
 .nav-links {
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -25,31 +40,21 @@
   transition: background-color 0.2s;
 }
 
-/* FIXED */
 .nav-links:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
-
-  .navbar-links {
-    gap: 1rem;
-  }
-
-  .nav-links {
-    padding: 0.5rem;
-  }
-}
-
-/* Active link styling */
 .nav-links.active {
   font-weight: bold;
   border-bottom: 2px solid #ff0000;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 70px;
+  }
+
+  .brand-text {
+    font-size: 1.5rem;
+  }
 }

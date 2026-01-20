@@ -1,12 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import "../css/Navbar.css";
+import logo from "../assets/Logo.png";
 
 function NavBar() {
   const location = useLocation();
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">Movie App</Link>
+        <Link to="/">
+          <img src={logo} alt="movie App logo" className="logo" />
+          <span className="brand-text">Movie App</span>
+        </Link>
       </div>
       <div className="navbar-links">
         <Link
