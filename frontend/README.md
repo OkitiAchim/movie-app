@@ -43,7 +43,7 @@ VITE_TMDB_API_KEY=your_api_key_here
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/MMegatron/movie-app.git
+   git clone https://github.com/OkitiAchim/movie-app.git
 
 2. Install dependencies:
    npm install
@@ -61,4 +61,5 @@ VITE_TMDB_API_KEY=your_api_key_here
 ## Author
 
 Vwegba Okiti  
-GitHub: https://github.com/MMegatron
+GitHub: https://github.com/OkitiAchim
+
