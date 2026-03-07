@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* === HEADER LAYOUT (POSTER + INFO) === */
+/*HEADER LAYOUT (POSTER + INFO)*/
 .movie-header {
   display: grid;
   grid-template-columns: 320px 1fr;

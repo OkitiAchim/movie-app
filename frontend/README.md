@@ -6,7 +6,7 @@ A modern, responsive movie web application built with React that allows users to
 
 ![Home Page](./screenshots/Home.png)
 ![Movie Details](./screenshots/Details.png)
-![Favourite Page](./screenshots/Favourite.png)
+![Favourite Page](./screenshots/Favourites.png)
 
 ## Features
 

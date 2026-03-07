@@ -9,7 +9,6 @@ function NavBar() {
       <div className="navbar-brand">
         <Link to="/">
           <img src={logo} alt="movie App logo" className="logo" />
-          <span className="brand-text">Movie App</span>
         </Link>
       </div>
       <div className="navbar-links">
