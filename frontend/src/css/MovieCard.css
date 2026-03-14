@@ -7,9 +7,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-
-  width: 200px;
-  flex-shrink: 0;
+  width: 100%;
 }
 
 .movie-card:hover {
@@ -30,10 +28,7 @@
 
 .movie-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.1),
@@ -110,6 +105,13 @@
   margin-top: auto;
 }
 
+.movie-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .movie-card {
     font-size: 0.9rem;
@@ -119,14 +121,17 @@
     padding: 0.75rem;
   }
 
+  .movie-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .movie-info p {
+    font-size: 0.8rem;
+  }
+
   .favourite-btn {
     width: 32px;
     height: 32px;
     font-size: 1.2rem;
   }
-}
-.movie-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }

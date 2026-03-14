@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/*HEADER LAYOUT (POSTER + INFO)*/
+/* HEADER LAYOUT */
 .movie-header {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -105,7 +105,7 @@
   color: #aaa;
 }
 
-/*MOBILE FIX */
+/* MOBILE */
 @media (max-width: 768px) {
   .movie-header {
     grid-template-columns: 1fr;

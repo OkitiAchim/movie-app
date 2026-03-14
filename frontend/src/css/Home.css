@@ -47,8 +47,8 @@
 /* MOVIE GRID */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
@@ -62,18 +62,8 @@
   background-size: 400% 100%;
   animation: shimmer 1.4s infinite;
 }
-.movie-row {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem;
-  scroll-behavior: smooth;
-}
 
-.movie-row::-webkit-scrollbar {
-  display: none;
-}
-
+/* NETFLIX STYLE ROW */
 .section-title {
   font-size: 1.4rem;
   margin: 1rem 0 0.5rem 1rem;
@@ -90,6 +80,13 @@
 .movie-row::-webkit-scrollbar {
   display: none;
 }
+
+/* keep row cards small */
+.movie-row .movie-card {
+  width: 160px;
+  flex-shrink: 0;
+}
+
 /* ANIMATIONS */
 @keyframes shimmer {
   0% {
@@ -101,7 +98,7 @@
   }
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 @media (max-width: 639px) {
   .home {
     padding: 1rem 0;
@@ -109,5 +106,10 @@
 
   .search-form {
     margin-bottom: 1rem;
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
   }
 }
