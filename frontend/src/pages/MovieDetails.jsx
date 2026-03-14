@@ -14,37 +14,28 @@ function MovieDetails() {
     async function fetchMovie() {
       try {
         setLoading(true);
-
         const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`,
         );
-
         if (!res.ok) throw new Error("Failed to fetch movie");
 
         const providerRes = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}`
+          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}`,
         );
-
         if (!providerRes.ok)
           throw new Error("Failed to fetch streaming providers");
-
         const providerData = await providerRes.json();
-
         setProviders(providerData.results?.US?.flatrate || []);
 
         const data = await res.json();
         const castRes = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`
+          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`,
         );
-
-        if (!castRes.ok) {
-          throw new Error("Failed to fetch cast");
-        }
-
+        if (!castRes.ok) throw new Error("Failed to fetch cast");
         const castData = await castRes.json();
-        setCast(castData.cast.slice(0, 4)); // limit to 10 actors
+        setCast(castData.cast.slice(0, 4));
 
         setMovie(data);
       } catch (err) {

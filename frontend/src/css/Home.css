@@ -1,9 +1,11 @@
+/* PAGE LAYOUT */
 .home {
   padding: 2rem 0;
   width: 100%;
   box-sizing: border-box;
 }
 
+/* SEARCH FORM */
 .search-form {
   max-width: 600px;
   margin: 0 auto 2rem;
@@ -42,7 +44,64 @@
   background-color: #f40612;
 }
 
+/* MOVIE GRID */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
 
+/* LOADING SKELETON */
+.movie-skeleton {
+  height: 400px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #1e1e1e 25%, #2a2a2a 37%, #1e1e1e 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+}
+.movie-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-behavior: smooth;
+}
+
+.movie-row::-webkit-scrollbar {
+  display: none;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin: 1rem 0 0.5rem 1rem;
+}
+
+.movie-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0 1rem 1rem 1rem;
+  scroll-behavior: smooth;
+}
+
+.movie-row::-webkit-scrollbar {
+  display: none;
+}
+/* ANIMATIONS */
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* RESPONSIVE */
 @media (max-width: 639px) {
   .home {
     padding: 1rem 0;
@@ -51,13 +110,4 @@
   .search-form {
     margin-bottom: 1rem;
   }
-}
-
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
 }
