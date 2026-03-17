@@ -8,11 +8,17 @@
 /* SEARCH FORM */
 .search-form {
   max-width: 600px;
+  width: 100%;
   margin: 0 auto 2rem;
   display: flex;
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 1rem;
   box-sizing: border-box;
+
+  position: sticky;
+  top: 0;
+  background: #111;
+  z-index: 20;
 }
 
 .search-input {
@@ -66,7 +72,7 @@
 /* NETFLIX STYLE ROW */
 .section-title {
   font-size: 1.4rem;
-  margin: 1rem 0 0.5rem 1rem;
+  margin: 2rem 0 0.5rem 1rem; /* improved spacing */
 }
 
 .movie-row {
@@ -92,7 +98,6 @@
   0% {
     background-position: 100% 0;
   }
-
   100% {
     background-position: 0 0;
   }

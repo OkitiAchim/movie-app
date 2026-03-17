@@ -10,13 +10,14 @@ import {
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // --- Infinite scroll states ---
+  // Infinite scroll states
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
@@ -27,7 +28,7 @@ function Home() {
         const trending = await getTrendingMovies();
         const topRated = await getTopRatedMovies();
 
-        setMovies(popular);
+        setPopularMovies(popular);
         setTrendingMovies(trending);
         setTopRatedMovies(topRated);
       } catch (err) {
@@ -41,17 +42,17 @@ function Home() {
     loadMovies();
   }, []);
 
-  const handSearch = async (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
     if (loading) return;
 
     setLoading(true);
     try {
-      const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults);
+      const results = await searchMovies(searchQuery);
+      setSearchResults(results);
       setError(null);
-      setHasMore(false); // Disable infinite scroll on search
+      setHasMore(false); // Disable infinite scroll while searching
     } catch (err) {
       console.log(err);
       setError("Failed to search movies...");
@@ -69,7 +70,7 @@ function Home() {
       if (newMovies.length === 0) {
         setHasMore(false);
       } else {
-        setMovies((prev) => [...prev, ...newMovies]);
+        setPopularMovies((prev) => [...prev, ...newMovies]);
         setPage(nextPage);
       }
     } catch (err) {
@@ -86,7 +87,8 @@ function Home() {
         window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 500 &&
         !loading &&
-        hasMore
+        hasMore &&
+        searchResults.length === 0 // only load more if not searching
       ) {
         loadMoreMovies();
       }
@@ -94,11 +96,11 @@ function Home() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, hasMore, page, movies]);
+  }, [loading, hasMore, page, popularMovies, searchResults]);
 
   return (
     <div className="home">
-      <form onSubmit={handSearch} className="search-form">
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           placeholder="Search for movies"
@@ -113,13 +115,29 @@ function Home() {
 
       {error && <div className="error-message">{error}</div>}
 
-      {loading && page === 1 ? (
+      {/* Loading skeleton for first load */}
+      {loading && page === 1 && (
         <div className="movies-grid">
           {Array.from({ length: 8 }).map((_, index) => (
             <div className="movie-skeleton" key={index}></div>
           ))}
         </div>
-      ) : (
+      )}
+
+      {/* If search results exist, show them first */}
+      {searchResults.length > 0 && (
+        <section>
+          <h2 className="section-title">Search Results</h2>
+          <div className="movies-grid">
+            {searchResults.map((movie) => (
+              <MovieCard movie={movie} key={movie.id} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* If no search or after search, show Trending / Top Rated / Popular */}
+      {searchResults.length === 0 && !loading && (
         <>
           <section>
             <h2 className="section-title">Trending Movies</h2>
@@ -142,20 +160,21 @@ function Home() {
           <section>
             <h2 className="section-title">Popular Movies</h2>
             <div className="movies-grid">
-              {movies.map((movie) => (
+              {popularMovies.map((movie) => (
                 <MovieCard movie={movie} key={movie.id} />
               ))}
             </div>
           </section>
-
-          {loading && page > 1 && (
-            <div className="movies-grid">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <div className="movie-skeleton" key={index}></div>
-              ))}
-            </div>
-          )}
         </>
+      )}
+
+      {/* Loading skeleton for infinite scroll */}
+      {loading && page > 1 && (
+        <div className="movies-grid">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <div className="movie-skeleton" key={index}></div>
+          ))}
+        </div>
       )}
     </div>
   );
